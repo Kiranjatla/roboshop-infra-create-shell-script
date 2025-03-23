@@ -1,6 +1,6 @@
 #!/bin/bash
 
-##### Change these values ###
+##### Change these values ###(Zone id means Route53 Hosted Zone id,Security group id is in security groups)
 ZONE_ID="Z0041272APBG07XRTPCJ"
 SG_NAME="allow-all"
 #ENV="dev"
@@ -21,7 +21,7 @@ create_ec2() {
 }
 
 
-## Main Program
+## Main Program starts here we are creating instance
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=Centos-8-DevOps-Practice" | jq '.Images[].ImageId' | sed -e 's/"//g')
 if [ -z "${AMI_ID}" ]; then
   echo "AMI_ID not found"
@@ -38,4 +38,5 @@ fi
 for component in catalogue cart user shipping payment frontend mongodb mysql rabbitmq redis dispatch; do
   COMPONENT="${component}"
   create_ec2
+  ## creating an instance fetching it's ip information and passing it to another aws cli command(create_ec2) to create DNS record
 done
