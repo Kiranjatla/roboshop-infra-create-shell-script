@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##### Change these values ###(Zone id means Route53 Hosted Zone id,Security group id is in security groups)
-ZONE_ID="Z0041272APBG07XRTPCJ"
+ZONE_ID="Z07170951UQPFBKT6XC20"
 SG_NAME="allow-all"
 #ENV="dev"
 #############################
